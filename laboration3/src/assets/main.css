@@ -1,0 +1,32 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color:  #b49c7d;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 1.2em;
+    color: #222;
+}
+
+.wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 3px 4px 4px #333;
+}
+
+main {
+    padding: 5%;
+}
+
+h2,h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+a {
+    color: #bb1010;
+}
+
+a:hover {
+    color: #f00;
+}
