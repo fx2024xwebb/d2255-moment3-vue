@@ -4,7 +4,6 @@
         <h3>{{ book.name }}</h3>
         <p> Utgivningsår: {{ book.year }}</p>
         <p> Läst? {{ book.read }}</p>
-        <p> {{ book._id }}</p>
     </article>
 </template>
 

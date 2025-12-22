@@ -1,0 +1,135 @@
+
+<template>
+
+    <form @submit.prevent="addBook">
+        <label for="title">Titel:</label>
+        <br>
+        <input type="text" name="title" id="title" v-model="title">
+        <br>
+        <label for="title">Utgivningsår:</label>
+        <br>
+        <input type="text" name="year" id="year" v-model="year">
+        <br>
+        <p>Har du läst boken?</p>
+
+        <input type="radio" name="read" id="yes" value="yes" v-model="read">Ja
+        <input type="radio" name="read" id="no" value="no" v-model="read">Nej
+        <br>
+        <input type="submit" value="Lägg till">
+
+    </form>
+
+    <p class="error" v-if="error">{{ error }}</p>
+
+</template>
+
+<script setup>
+
+    import  { ref } from 'vue';
+
+    const title = ref('');
+    const year = ref('');
+    const read = ref('');
+
+    const error = ref("");
+
+    const addBook = async () => {
+
+        if(title.value.length <1) {
+            error.value = "Titel behöver vara minst ett tecken";
+            return;
+        }
+
+        if(year.value.trim() === "" || isNaN(year.value) || year.value.length <4 || year.value.length > 4) {
+            error.value = "År måste anges med siffror i formatet: ÅÅÅÅ, t.ex. 1995";
+            return;
+        }
+
+        if(read.value === "") {
+            error.value = "Vänligen välj om du läst boken eller ej";
+        }
+
+        // TEST
+        console.log(title.value);
+        console.log(year.value);
+        console.log(read.value);
+
+        const newBook = {
+            title: title.value,
+            year: year.value,
+            read: read.value === 'yes'
+        }
+
+        console.table(newBook);
+
+        error.value = "";
+
+        try {
+
+            const res = await fetch("http://localhost:5000/books", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newBook)
+            })
+
+            if(res.ok) {
+                console.log("OK!");
+            }
+
+        } catch (error) {
+            console.log("Error: " + error);
+        }
+
+    }
+
+</script>
+
+<style scoped>
+    
+    form {
+        padding-bottom: 1.5em;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type=text] {
+        padding: 1%;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    #title {
+        width: 250px;
+    }
+
+    #year {
+        width: 50px;
+    }
+
+    input[type=submit] {
+        margin-top: 1.2em;
+        padding: 1%;
+        width: 100px;
+        background-color: #cf4f5c;
+        color: #fff;
+        border-radius: 5px;
+        border: none;
+    }
+
+    input[type=submit]:hover {
+        background-color: #419f52;
+    }
+
+    .error {
+        color: #f00;
+    }
+
+    .error::before {
+        content: "* ";
+    }  
+    
+</style>

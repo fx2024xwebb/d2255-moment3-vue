@@ -5,6 +5,10 @@
     <h2>Böcker</h2>
     <p>Här kan du se inlagda böcker och lägga till och ta bort från listan.</p>
 
+    <AddBook />
+
+    <p><strong>Böcker i arkivet:</strong></p>
+
     <BookItem v-for="book in books" :book="book" :key="book._id" @delete-book="deleteBook" />
 
 </template>
@@ -13,6 +17,7 @@
 <script setup>
 
     import BookItem from '@/components/BookItem.vue';
+    import AddBook from '@/components/AddBook.vue';
     import { ref, onMounted } from 'vue';
 
     const books = ref([]);
@@ -66,12 +71,14 @@
                 getBooks();
             }
 
-
-
-
         } catch (error) {
             console.log("Error: " + error);
         }
     }
 
 </script>
+
+<style scoped>
+
+
+</style>
