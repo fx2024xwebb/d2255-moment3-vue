@@ -13,9 +13,15 @@
 <script setup>
 
     import BookItem from '@/components/BookItem.vue';
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
 
-    const books = ref([{
+    const books = ref([]);
+
+    onMounted(() => {
+        getBooks();
+    })
+
+    /* const books = ref([{
         name: "Bok 1",
         year: "2025",
         read: true,
@@ -28,6 +34,23 @@
         _id: "2"
     }
 
-    ])
+    ]) */
+
+    const getBooks = async () => {
+
+        try {
+
+            const res = await fetch("http://localhost:5000/books");
+
+            if(res.ok) {
+                const data = await res.json();
+                books.value = data;
+            }
+
+        } catch (error) {
+            console.log("Error: " + error);
+        }
+
+    }
 
 </script>
