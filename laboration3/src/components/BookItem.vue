@@ -1,17 +1,24 @@
 
 <template>
-    <article>
+    <article @click="$emit('deleteBook', book._id)">
         <h3>{{ book.name }}</h3>
         <p> Utgivningsår: {{ book.year }}</p>
         <p> Läst? {{ book.read }}</p>
+        <p> {{ book._id }}</p>
     </article>
 </template>
 
+
 <script setup>
+
     const props = defineProps({
         book: Object
     })
+
+    const emits = defineEmits(["deleteBook"]);
+
 </script>
+
 
 <style scoped>
     

@@ -5,7 +5,7 @@
     <h2>Böcker</h2>
     <p>Här kan du se inlagda böcker och lägga till och ta bort från listan.</p>
 
-    <BookItem v-for="book in books" :book="book" :key="book._id" />
+    <BookItem v-for="book in books" :book="book" :key="book._id" @delete-book="deleteBook" />
 
 </template>
 
@@ -51,6 +51,27 @@
             console.log("Error: " + error);
         }
 
+    }
+
+    const deleteBook = async (id) => {
+        
+        try {
+
+            const res = await fetch("http://localhost:5000/books/" + id, {
+                method: "DELETE"
+            });
+
+            if(res.ok) {
+                console.log("res ok");
+                getBooks();
+            }
+
+
+
+
+        } catch (error) {
+            console.log("Error: " + error);
+        }
     }
 
 </script>
