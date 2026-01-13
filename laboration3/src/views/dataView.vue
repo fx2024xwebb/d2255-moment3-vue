@@ -5,7 +5,7 @@
     <h2>Böcker</h2>
     <p>Här kan du se inlagda böcker och lägga till och ta bort från listan.</p>
 
-    <AddBook />
+    <AddBook @refresh-list="getBooks" />
 
     <p><strong>Böcker i arkivet:</strong></p>
 

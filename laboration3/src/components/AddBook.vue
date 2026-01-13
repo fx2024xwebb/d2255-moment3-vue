@@ -32,6 +32,8 @@
     const read = ref('');
 
     const error = ref("");
+    
+    const emits = defineEmits(["refreshList"]);
 
     const addBook = async () => {
 
@@ -83,7 +85,12 @@
 
             if(res.ok) {
                 console.log("OK!");
-                
+                emits("refreshList");
+
+                // Rensa formulär
+                name.value = "";
+                year.value = "";
+                read.value = "";
             }
 
         } catch (error) {
