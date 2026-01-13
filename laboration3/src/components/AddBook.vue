@@ -2,11 +2,11 @@
 <template>
 
     <form @submit.prevent="addBook">
-        <label for="title">Titel:</label>
+        <label for="name">Titel:</label>
         <br>
-        <input type="text" name="title" id="title" v-model="title">
+        <input type="text" name="name" id="name" v-model="name">
         <br>
-        <label for="title">Utgivningsår:</label>
+        <label for="year">Utgivningsår:</label>
         <br>
         <input type="text" name="year" id="year" v-model="year">
         <br>
@@ -27,7 +27,7 @@
 
     import  { ref } from 'vue';
 
-    const title = ref('');
+    const name = ref('');
     const year = ref('');
     const read = ref('');
 
@@ -35,7 +35,7 @@
 
     const addBook = async () => {
 
-        if(title.value.length <1) {
+        if(name.value.length <1) {
             error.value = "Titel behöver vara minst ett tecken";
             return;
         }
@@ -50,12 +50,12 @@
         }
 
         // TEST
-        console.log(title.value);
+        console.log(name.value);
         console.log(year.value);
         console.log(read.value);
 
         const newBook = {
-            title: title.value,
+            name: name.value,
             year: year.value,
             read: read.value === 'yes'
         }
