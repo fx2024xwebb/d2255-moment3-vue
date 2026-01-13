@@ -35,15 +35,22 @@
 
     const addBook = async () => {
 
+        const yearNr = Number(year.value);
+
         if(name.value.length <1) {
             error.value = "Titel behöver vara minst ett tecken";
             return;
         }
 
-        if(year.value.trim() === "" || isNaN(year.value) || year.value.length <4 || year.value.length > 4) {
-            error.value = "År måste anges med siffror i formatet: ÅÅÅÅ, t.ex. 1995";
+        if (isNaN(year.value) || year.value.length !==4) {
+            error.value = "Ange ett korrekt årtal tex: 1995";
             return;
         }
+
+        /* if(year.value.trim() === "" || isNaN(year.value) || year.value.length <4 || year.value.length > 4) {
+            error.value = "År måste anges med siffror i formatet: ÅÅÅÅ, t.ex. 1995";
+            return;
+        } */
 
         if(read.value === "") {
             error.value = "Vänligen välj om du läst boken eller ej";
@@ -76,6 +83,7 @@
 
             if(res.ok) {
                 console.log("OK!");
+                
             }
 
         } catch (error) {
@@ -131,5 +139,21 @@
     .error::before {
         content: "* ";
     }  
+
+    @media all and (max-width: 600px) {
+        
+        input[type=text] {
+            padding: 4%;
+            font-size: 1.2em;
+        }
+
+        input[type=submit] {
+            margin-left: 25%;
+            padding: 4%;
+            width: 150px;
+            font-size: 1.5em;
+        }
+
+    }
     
 </style>

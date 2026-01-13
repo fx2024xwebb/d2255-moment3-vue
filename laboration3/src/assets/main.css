@@ -31,3 +31,16 @@ a {
 a:hover {
     color: #f00;
 }
+
+@media all and (max-width: 600px) {
+    
+    body {
+        font-size: 1em;
+    }
+
+    .wrap {
+        max-width: 600px;
+        box-shadow: none;
+    }
+
+}

@@ -60,4 +60,34 @@
         margin: 0 1.5em;
     }
 
+    @media all and (max-width: 600px) {
+
+        header {
+            padding: 2%;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: block;
+            margin-bottom: 0.9em;
+            padding: 4%;
+            background-color: #803333;
+        }
+
+    }
+
 </style>
