@@ -26,21 +26,7 @@
         getBooks();
     })
 
-    /* const books = ref([{
-        name: "Bok 1",
-        year: "2025",
-        read: true,
-        _id: "1"
-    },
-    {
-    name: "Bok 2",
-        year: "2025",
-        read: true,
-        _id: "2"
-    }
-
-    ]) */
-
+    // Funktion för att hämta data
     const getBooks = async () => {
 
         try {
@@ -58,6 +44,7 @@
 
     }
 
+    // Ta bort-funktion
     const deleteBook = async (id) => {
         
         try {
@@ -78,7 +65,7 @@
 
 </script>
 
-<style scoped>
 
+<style scoped>
 
 </style>

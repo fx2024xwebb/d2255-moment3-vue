@@ -1,6 +1,6 @@
 
 <template>
-
+    <!-- Formulär -->
     <form @submit.prevent="addBook">
         <label for="name">Titel:</label>
         <br>
@@ -25,6 +25,7 @@
 
 <script setup>
 
+    // Variabler för input
     import  { ref } from 'vue';
 
     const name = ref('');
@@ -35,41 +36,33 @@
     
     const emits = defineEmits(["refreshList"]);
 
+    // Funktion för att lägga till
     const addBook = async () => {
 
+        // Kontroller för input-fälten 
         const yearNr = Number(year.value);
 
         if(name.value.length <1) {
-            error.value = "Titel behöver vara minst ett tecken";
+            error.value = "Skriv in en titel (minst 1 tecken)";
             return;
         }
 
-        if (isNaN(year.value) || year.value.length !==4) {
-            error.value = "Ange ett korrekt årtal tex: 1995";
+        if (isNaN(yearNr) || yearNr.toString().length !== 4) {
+            error.value = "Skriv in årtal ex: 1995";
             return;
         }
-
-        /* if(year.value.trim() === "" || isNaN(year.value) || year.value.length <4 || year.value.length > 4) {
-            error.value = "År måste anges med siffror i formatet: ÅÅÅÅ, t.ex. 1995";
-            return;
-        } */
 
         if(read.value === "") {
             error.value = "Vänligen välj om du läst boken eller ej";
+            return;
         }
 
-        // TEST
-        console.log(name.value);
-        console.log(year.value);
-        console.log(read.value);
-
+        // Skapa ojbekt + lägg till
         const newBook = {
             name: name.value,
             year: year.value,
             read: read.value === 'yes'
         }
-
-        console.table(newBook);
 
         error.value = "";
 
@@ -84,7 +77,6 @@
             })
 
             if(res.ok) {
-                console.log("OK!");
                 emits("refreshList");
 
                 // Rensa formulär

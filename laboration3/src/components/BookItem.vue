@@ -1,10 +1,10 @@
 
+<!-- Skriv ut data -->
 <template>
     <article @click="$emit('deleteBook', book._id)">
         <h3>{{ book.name }}</h3>
         <p> Utgivningsår: {{ book.year }}</p>
         <p> Läst? {{ book.read ? 'Ja' : 'Nej' }}</p>
-        <!--<p> Läst? {{ book.read }}</p> -->
     </article>
 </template>
 
